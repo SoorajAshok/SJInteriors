@@ -1,0 +1,229 @@
+<style>
+  #gallery {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+
+    -webkit-column-gap: 20px;
+    -moz-column-gap: 20px;
+    column-gap: 20px;
+  }
+
+  @media (max-width:1200px) {
+    #gallery {
+      -webkit-column-count: 3;
+      -moz-column-count: 3;
+      column-count: 3;
+
+      -webkit-column-gap: 20px;
+      -moz-column-gap: 20px;
+      column-gap: 20px;
+    }
+  }
+
+  @media (max-width:800px) {
+    #gallery {
+      -webkit-column-count: 2;
+      -moz-column-count: 2;
+      column-count: 2;
+
+      -webkit-column-gap: 20px;
+      -moz-column-gap: 20px;
+      column-gap: 20px;
+    }
+  }
+
+  @media (max-width:600px) {
+    #gallery {
+      -webkit-column-count: 1;
+      -moz-column-count: 1;
+      column-count: 1;
+    }
+  }
+
+  #gallery img,
+  #gallery video {
+    width: 100%;
+    height: auto;
+    margin: 4% auto;
+    box-shadow: -3px 5px 15px #000;
+    cursor: pointer;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+  }
+
+  .modal-img,
+  .model-vid {
+    width: 100%;
+    height: auto;
+  }
+
+  .modal-body {
+    padding: 0px;
+  }
+
+  /*Project Edit & Delete button CSS*/
+  #reveal-click {
+    float: right;
+    color: #fff;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  #reveal-click:hover {
+    font-family: monospace;
+  }
+
+  #hidden-div {
+  display: none;
+  }
+
+  a.deletebutton {
+    float: right;
+    color: #fff;
+    background-color: transparent;
+  }
+
+  a.deletebutton:hover {
+    color: coral;
+  }
+  /*End Project Edit & Delete button CSS*/
+
+  /*Gallery Image Delete Icon CSS*/
+  div.gallery-pic {
+    position: relative;
+    display: inline-block;
+  }
+
+  div.gallery-pic:hover .delete {
+    display: block;
+  }
+
+  div.gallery-pic:hover img {
+    opacity: 0.7;
+  }
+
+  .delete {
+    padding-top: 7px;
+    padding-right: 7px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+  }
+
+  .delete a {
+    color: #000;
+  }
+/*End Gallery Image Delete Icon CSS*/
+
+/*Caption CSS*/
+  p.caption:first-of-type::first-letter{
+  position:relative;
+  font-size:2.5em;
+  float:left;
+  line-height:1;
+  color: orange;
+  padding:0 4px 2px 0;
+  font-weight:bold;
+}
+/*End Caption CSS*/
+</style>
+
+{% if gallery %}
+{% if not is_projectgallery %}
+<div class="heading_container heading_center">
+  <h2>
+    Gallery
+  </h2>
+</div>
+{% else %}
+<div class="heading_container heading_center">
+  <h2>
+    Blog : {{ gallery[0].project_name.upper() }}
+  </h2>
+  <br>
+</div>
+
+
+{% if session.get('login') %}
+<!---------- Project Edit & Delete ---------->
+<div style="background-color:#BEB4C5;color:white;padding:20px;">
+  Images : {{ gallery|length }}
+  <!---------- Project Delete Button ---------->
+  <a class="deletebutton" href="{{url_for('delete_project', name = gallery[0].project_name) }}">
+    Delete Project
+  </a>
+  <!---------- End of Project Delete Button ---------->
+
+  <!---------- Project Edit Button --------->
+  <div id="reveal-click">
+    Edit Project &emsp;
+  </div>
+  <!---------- End of Project Edit Button ---------->
+</div>
+<br>
+
+<div id="hidden-div" >
+  {% include "edit_project.html" %}
+  <br>
+</div>
+<!---------- End of Project Edit & Delete ---------->
+
+<!---------- Project Caption ---------->
+<div class="ProjectCaption" style="background-color:#C54B6C;color:white;padding:20px;">
+  <p class="caption">{{ project.project_caption }}</p>
+  
+</div>
+<!---------- End of Project Caption---------->
+
+{% endif %}
+{% endif %}
+<br>
+
+<!---------- Gallery Images---------->
+<div id="gallery" class="container-fluid">
+  {% for image in gallery %}
+  <div class="gallery-pic">
+    <img src="{{ image.image_path }}" class="img-responsive">
+    <div class="delete">
+      <a href="{{url_for('delete_image', name = image.image_name) }}">
+        <i class="fa fa-trash-o fa-lg"></i>
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<!---------- End of Gallery Images---------->
+
+<!---------- On Click Gallery Images---------->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+      </div>
+    </div>
+
+  </div>
+</div>
+<!---------- End of On Click Gallery Images---------->
+{% endif %}
+
+<script>
+  $(document).ready(function () {
+    $("img").click(function () {
+      var t = $(this).attr("src");
+      $(".modal-body").html("<img src='" + t + "' class='modal-img'>");
+      $("#myModal").modal();
+    });
+});
+$('#reveal-click').click(function () {
+    $('#hidden-div').slideToggle({
+      direction: "up"
+    }, 300);
+    $(this).toggleClass('clientsClose');
+    $('.ProjectCaption').toggle('slow');
+  }); // end click //EOF Document.ready
+</script>

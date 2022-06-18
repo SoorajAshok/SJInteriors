@@ -1,0 +1,30 @@
+<!-- Project Upload section -->
+<form name="updateProject" id="updateProject" method="post" action="/updateProject" enctype="multipart/form-data">
+  <section class="contact_section  ">
+    <div class="form_container" style="background-color:#C54B6C;">
+      <div class="heading_container ">
+        <h2>
+          Edit Content
+        </h2>
+      </div>
+      <form>
+        <div>
+          <input id="name" name="name" value="{{ project.project_name }}" type="hidden"/>
+          <input id="caption" name="caption" type="text" class="message-box"
+            placeholder="Update your Project caption here.." />
+        </div>
+        <div>
+          <input type="file" name="image" id="image" multiple>
+        </div>
+        <div class="btn_box">
+          <button>
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
+    <br><br>
+  </section>
+  <br>
+</form>
+<!-- End Project Upload section -->

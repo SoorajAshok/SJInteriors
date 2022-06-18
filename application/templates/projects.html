@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% include "includes/user_header.html" %}
+<style>
+	a {
+		color: #ffffff;
+		background-color: transparent;
+	}
+
+	.grid-wrapper {
+		--auto-grid-min-size: 16rem;
+		display: grid;
+		grid-gap: 2rem;
+		grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: 'Montserrat', sans-serif;
+
+	}
+
+	.grid-wrapper li {
+		background-color: #BEB4C5;
+		color: #ffffff;
+		font-size: 24px;
+		list-style-type: none;
+		padding: 5rem 1rem;
+		text-align: center;
+		text-transform: capitalize;
+		font-weight: 600;
+	}
+
+	.main-container {
+		margin: 0 auto;
+		max-width: 1170px;
+		padding: 2rem 1rem;
+	}
+</style>
+<!-- service section -->
+<section>
+	<div class="main-container">
+		<ul class="grid-wrapper">
+			{% for project in projects %}
+			<form name="{{ project.project_name }}" action="/gallery" method="post">
+				<input type="hidden" id="name" name="name" value="{{ project.project_name }}">
+				<li>
+					<a href="#" onclick="document.forms['{{ project.project_name }}'].submit();">
+						{{ project.project_name }}
+					</a>
+				</li>
+			</form>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+<!-- end service section -->
+{% endblock %}

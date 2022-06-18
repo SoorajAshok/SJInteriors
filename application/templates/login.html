@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<section class="slider_section position-relative">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="img_container">
+            <div class="img-box">
+              <img src="static/images/slider-bg.jpg" class="" alt="...">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="detail-box">
+    <div class="col-md-8 col-lg-6 mx-auto">
+        <div class="inner_detail-box">
+            <h2>
+                Login
+            </h2>
+                                              
+            <form id="login" name="login" action="/login" method="post">
+              <div class="block">
+                <input type="text" class="input_res" id="name" name="name" placeholder="Your Name" required/>
+              </div>
+              <div>
+                <input type="password" class="input_res" id="password" name="password" placeholder="Password" required/>
+              </div>
+              <div class="block">
+                <button class="slider-link">
+                  Sign In
+                </button>
+                  </a>
+              </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+</section>
+
+
+{% endblock %}

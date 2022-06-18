@@ -1,0 +1,65 @@
+<!-- contact section -->
+
+<section class="contact_section  ">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 col-lg-6 ">
+        <div class="form_container">
+          <div class="heading_container ">
+            <h2>
+              Contact Us
+            </h2>
+          </div>
+          <form id="contactus" name="contactus" action="/contactus" method="post">
+            <div>
+              <input id="name" name="name" type="text" placeholder="Your Name" required />
+            </div>
+            <div>
+              <input id="mobile_no" name="mobile_no" type="tel" placeholder="Phone Number" pattern="[0-9]{10}" size="9"
+                required />
+            </div>
+            <div>
+              <input id="email" name="email" type="email" placeholder="Email" required />
+            </div>
+            <div>
+              <input id="message" name="message" type="text" class="message-box" placeholder="Message" required />
+            </div>
+            <div class="btn_box">
+              <button>
+                SEND
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-5 col-lg-6">
+        <div class="subscribe-box">
+          <h3>
+            Share your Feedback, Help us to examine Ourself!!
+          </h3>
+          <p>
+            “We all need people who will give us feedback. That’s how we improve.” Bill Gates
+          </p>
+          <form id="feedback" name="feedback" action="/feedback" method="post">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-5 col-lg-6">
+                  <input id="name" name="name" type="text" placeholder="Enter your name" required />
+                </div>
+                <div class="col-md-5 col-lg-6">
+                  <input id="mail" name="mail" type="email" placeholder="Enter your email" required />
+                </div>
+              </div>
+              <input id="feedback_message" name="feedback_message" type="text" placeholder="Enter your feedback" required />
+              <button>
+                Share
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end contact section -->

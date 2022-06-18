@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% include "includes/user_header.html" %}
+<!-- Alert section -->
+{% if msg %}
+<div {% if Alert_Flag %} class="alert-success" {% else %} class="alert-fail" {% endif %}>
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  {{ msg }}
+</div>
+{% endif %}
+<!-- End Alert section -->
+
+<br><br><br><br>
+
+<!-- Add New Project section -->
+<form id="project" name="project" method="post" action="/user" enctype="multipart/form-data">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>
+        Upload New Projectss
+      </h2>
+    </div>
+    <br><br>
+    <!-- Project Upload & Counter section -->
+    <section class="contact_section  ">
+      <div class="container">
+        <div class="row">
+          <!-- Project Upload section -->
+          <div class="col-md-7 col-lg-6 ">
+            <div class="form_container">
+              <div class="heading_container ">
+                <h2>
+                  Upload Project
+                </h2>
+              </div>
+              <form action="">
+                <div>
+                  <input id="name" name="name" type="text" placeholder="Project Name" required />
+                </div>
+                <div>
+                  <input id="caption" name="caption" type="text" class="message-box" placeholder="Caption" required />
+                </div>
+                <div>
+                  <input type="file" name="image" id="image" multiple required>
+                </div>
+                <div class="btn_box">
+                  <button>
+                    Upload
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- End Project Upload section -->
+          <!-- Counter section -->
+          <div class="col-md-5 col-lg-6">
+            <div class="subscribe-box">
+              <form action="">
+                {% include "counter.html" %}
+              </form>
+            </div>
+          </div>
+          <!-- End Counter section -->
+        </div>
+      </div>
+    </section>
+    <!-- end Project Upload & Counter section -->
+  </div>
+</form>
+
+<br><br><br><br>
+<!-- End Add New Project section -->
+
+<br><br><br><br>
+
+{% include "recent_Project.html" %}
+
+{% include "gallery.html" %}
+
+<section>
+  <div class="container"><br><br><br><br><br><br></div>
+</section>
+
+<!-- info section -->
+{% include "info_footer.html" %}
+<!-- end info_section -->
+
+{% endblock %}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+{% include "includes/head.html" %}
+
+<body>
+
+  {% include "includes/header.html" %}
+
+  {% block content %}
+
+  {% endblock %}
+
+  {% if not session.get('login') %}
+
+  {% include "includes/footer.html" %}
+
+  {% endif %}
+
+
+  <!-- jQery -->
+  <script src="static/js/jquery-3.4.1.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="static/js/bootstrap.js"></script>
+  <!-- lightbox Gallery-->
+  <script src="static/js/ekko-lightbox.min.js"></script>
+  <!-- custom js -->
+  <script src="static/js/custom.js"></script>
+  <!-- flash js -->
+  <script src="static/js/flash.js"></script>
+
+</body>
+
+</html>

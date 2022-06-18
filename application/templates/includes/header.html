@@ -1,0 +1,42 @@
+  <!-- header section strats -->
+  <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+          <span>
+            SJ Life Spaces Interiors
+          </span>
+        </a>
+        <div class="" id="">
+
+          <div class="custom_menu-btn">
+            <button onclick="openNav()">
+              <span class="s-1"> </span>
+              <span class="s-2"> </span>
+              <span class="s-3"> </span>
+            </button>
+            <div id="myNav" class="overlay">
+              <div class="overlay-content">
+                <a href="{{ url_for('index') }}">Home</a>
+                {% if session.get('login') %}
+                    <a href="{{ url_for('users') }}">Admin Home</a>
+                {% else %}
+                <a href=" #about">About</a>
+                <a href="#service">Service</a>
+                {% endif %}
+                {% if gallery %}
+                <a href="#gallery">Gallery</a>
+                {% endif %}
+                {% if session.get('login') %}
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" target="_blank">Login</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- end header section -->
