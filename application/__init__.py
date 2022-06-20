@@ -4,6 +4,8 @@ from config import Config
 from flask_mongoengine import MongoEngine
 from flask_mail import Mail
 
+#from mongoengine import connect
+
 UPLOAD_FOLDER = 'C:/Users/SRJ/SJInteriors/application/static/images/projects/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
@@ -11,8 +13,18 @@ app = Flask(__name__)
 app.config.from_object(Config)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-db = MongoEngine() 
-db.init_app(app)
+#db = MongoEngine() 
+
+
+#DB_URI = "mongodb+srv://Sooraj:"+ quote("Pa55w0rd@0")+"@sjinteriors.o8zfgtm.mongodb.net/?retryWrites=true&w=majority"
+#app.config["MONGODB_HOST"] = DB_URI
+#connect(host=DB_URI)
+db = MongoEngine(app)
+
+#db.init_app(app)
+
+
+
 
 mail = Mail(app) # instantiate the mail class
    

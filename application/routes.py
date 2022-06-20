@@ -39,7 +39,6 @@ gallery = imgGallery()
 
 #Recent Projects:
 def recentProjects():
-    
     if Projects.objects.all().count() == 0: #Checking if there is no projects in DB
         projectList = [False, False]
         return projectList
@@ -99,8 +98,13 @@ def users():
         return redirect(url_for('login'))
     if request.method == 'GET':
         projectCounter = Projects.objects.all().count()
-        return render_template("user.html", gallery = imgGallery(), 
-        projectCounter = projectCounter, rProjects = rProjects[0], imageList = rProjects[1])
+        if projectCounter == 0:
+            return render_template("user.html", gallery = [],  
+        projectCounter = projectCounter)
+        else:
+            print("rProjects[0].project_name =====",rProjects[0].project_name)
+            return render_template("user.html", gallery = imgGallery(), 
+            projectCounter = projectCounter, rProjects = rProjects[0], imageList = rProjects[1])
     else:
         if 'image' in request.files and request.form.get("name"):
             project_name    =   request.form.get("name")

@@ -30,9 +30,8 @@ box-shadow: 0px 0px 38px -8px rgba(0,0,0,0.34);
 }
 </style>
 
-
+{% if projectCounter %}
 <div id="counter">
-
   <div class="item">
      <h1 class="count" data-number="{{ projectCounter }}" ></h1>
      <a href="{{ url_for('projects') }}"><h3 class="text">projects done</h3></a>
@@ -41,11 +40,22 @@ box-shadow: 0px 0px 38px -8px rgba(0,0,0,0.34);
      <h1 class="count" data-number="{{gallery|length}}" ></h1>
      <h3 class="text">Images Uploaded</h3>
   </div>
-
 </div>
+{% else %}
+<div id="counter">
+  <div class="item">
+     <h1>{{ projectCounter }}</h1>
+     <a href=""><h3 class="text">projects done</h3></a>
+  </div>
+  <div class="item">
+     <h1>{{projectCounter}}</h1>
+     <h3 class="text">Images Uploaded</h3>
+  </div>
+</div>
+{% endif %}
 
 <script>
-  let count = document.querySelectorAll(".count")
+let count = document.querySelectorAll(".count")
 let arr = Array.from(count)
 
 
